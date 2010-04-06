@@ -4,13 +4,8 @@
 
 package com.okbilly.control
 {
-
 	
-	import com.socialvibe.model.GraphDataProxy;
-	import com.socialvibe.model.MetricProxy;
-	import com.socialvibe.model.NameDataProxy;
-	import com.socialvibe.model.StatsDataProxy;
-	import com.socialvibe.view.StageMediator;
+	import com.okbilly.view.StageMediator;
 	
 	import flash.display.Stage;
 	
@@ -42,7 +37,7 @@ package com.okbilly.control
 			_monitor.defaultRetryPolicy = new RetryPolicy(new RetryParameters(3, 5000, 15000));
 			facade.registerProxy( _monitor );
 			
-			//Register all the proxies			
+			/*//Register all the proxies			
 			var stats:StatsDataProxy = new StatsDataProxy();
 			facade.registerProxy(stats);			
 			var graphDataProxy:GraphDataProxy = new GraphDataProxy();
@@ -69,7 +64,7 @@ package com.okbilly.control
 			r.requires = [r2, r3];
 			
 			
-			_monitor.loadResources();
+			_monitor.loadResources();*/
 			
 		}
 	}

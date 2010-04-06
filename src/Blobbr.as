@@ -1,7 +1,6 @@
 package
 {
-	
-	import com.okBilly.ApplicationFacade;
+	import com.okbilly.ApplicationFacade;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -14,7 +13,7 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			
-			var facade:ApplicationFacade= ApplicationFacade.getInstance();
+			var facade:ApplicationFacade = ApplicationFacade.getInstance();
 			facade.init( this.stage );
 		}
 	}

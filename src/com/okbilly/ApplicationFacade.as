@@ -1,5 +1,7 @@
 package com.okbilly
 {
+	import com.okbilly.control.InitializeCommand;
+	
 	import org.puremvc.as3.multicore.interfaces.IFacade;
 	import org.puremvc.as3.multicore.patterns.facade.Facade;
 	import org.puremvc.as3.multicore.utilities.startupmanager.controller.StartupResourceLoadedCommand;
