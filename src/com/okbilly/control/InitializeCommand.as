@@ -5,6 +5,7 @@
 package com.okbilly.control
 {
 	
+	import com.okbilly.model.XMLProxy;
 	import com.okbilly.view.StageMediator;
 	
 	import flash.display.Stage;
@@ -37,34 +38,17 @@ package com.okbilly.control
 			_monitor.defaultRetryPolicy = new RetryPolicy(new RetryParameters(3, 5000, 15000));
 			facade.registerProxy( _monitor );
 			
-			/*//Register all the proxies			
-			var stats:StatsDataProxy = new StatsDataProxy();
-			facade.registerProxy(stats);			
-			var graphDataProxy:GraphDataProxy = new GraphDataProxy();
-			facade.registerProxy(graphDataProxy);
-			var nameDataProxy:NameDataProxy = new NameDataProxy();
-			facade.registerProxy(nameDataProxy);
-			var metric:MetricProxy = new MetricProxy();
-			facade.registerProxy(metric);
-			
+			//Register all the proxies			
+			var assets:XMLProxy = new XMLProxy();
+			facade.registerProxy(assets);			
+						
 			//Register all the startup Proxies			
-			var r:StartupResourceProxy = new StartupResourceProxy( StatsDataProxy.SRNAME, stats );
+			var r:StartupResourceProxy = new StartupResourceProxy( XMLProxy.SRNAME, assets );
 			facade.registerProxy( r );
 			_monitor.addResource( r );
 			
-			var r2:StartupResourceProxy = new StartupResourceProxy( GraphDataProxy.SRNAME, graphDataProxy);
-			facade.registerProxy( r2 );
-			_monitor.addResource( r2 );
 			
-			var r3:StartupResourceProxy = new StartupResourceProxy( NameDataProxy.SRNAME, nameDataProxy);
-			facade.registerProxy( r3 );
-			_monitor.addResource( r3 );
-			
-			r3.requires = [r2];
-			r.requires = [r2, r3];
-			
-			
-			_monitor.loadResources();*/
+			_monitor.loadResources();
 			
 		}
 	}

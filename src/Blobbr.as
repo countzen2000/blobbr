@@ -8,6 +8,7 @@ package
 	
 	public class Blobbr extends Sprite
 	{
+		//[SWF(width="250", height="300")]
 		public function Blobbr()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -15,6 +16,7 @@ package
 			
 			var facade:ApplicationFacade = ApplicationFacade.getInstance();
 			facade.init( this.stage );
+			
 		}
 	}
 }

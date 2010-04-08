@@ -15,9 +15,7 @@ package com.okbilly
 		public static const INIT:String = "initializeApp";
 		
 		//StartupManager
-		public static const STAT_DATA_LOADED:String = "statDataLoaded";
-		public static const GRAPH_DATA_LOADED:String = "graphDataLoaded";
-		public static const NAME_DATA_LOADED:String = "nameDataLoaded";
+		public static const ASSETS_LOADED:String = "assetsLoaded";
 		public static const STARTUP:String = "startup";
 		
 		public static var instance:ApplicationFacade;
@@ -43,9 +41,8 @@ package com.okbilly
 			registerCommand(INIT, InitializeCommand);
 			
 			//For startup Sequence--Startup Manager
-			registerCommand(STAT_DATA_LOADED, StartupResourceLoadedCommand);
-			registerCommand(GRAPH_DATA_LOADED, StartupResourceLoadedCommand);
-			registerCommand(NAME_DATA_LOADED, StartupResourceLoadedCommand);
+			registerCommand(ASSETS_LOADED, StartupResourceLoadedCommand);
+			
 		}
 		
 		public function init( stage:Object ):void

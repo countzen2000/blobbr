@@ -1,6 +1,7 @@
 package com.okbilly.view
 {
 	import com.okbilly.ApplicationFacade;
+	import com.okbilly.view.component.Header;
 	
 	import flash.display.Stage;
 	
@@ -47,7 +48,11 @@ package com.okbilly.view
 		}
 		
 		private function initializeSite():void
-		{			
+		{
+			var header:Header = new Header(this.stage.stageWidth);
+			facade.registerMediator(new HeaderMediator(header));
+			this.stage.addChild(header);
+			
 			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
 		}
 		
