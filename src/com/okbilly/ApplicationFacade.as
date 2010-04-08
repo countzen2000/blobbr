@@ -16,6 +16,7 @@ package com.okbilly
 		
 		//StartupManager
 		public static const HEADER_DATA_LOADED:String = "headerDataLoaded";
+		public static const XML_DATA_LOADED:String = "xmlDataLoaded";
 		public static const STARTUP:String = "startup";
 		
 		public static var instance:ApplicationFacade;

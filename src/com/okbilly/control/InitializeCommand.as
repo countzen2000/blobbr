@@ -4,8 +4,8 @@
 
 package com.okbilly.control
 {
-	
 	import com.okbilly.model.HeaderProxy;
+	import com.okbilly.model.XMLProxy;
 	import com.okbilly.view.StageMediator;
 	
 	import flash.display.Stage;
@@ -45,9 +45,15 @@ package com.okbilly.control
 			
 			//Register all the startup Proxies			
 			var r:StartupResourceProxy = new StartupResourceProxy( HeaderProxy.SRNAME, header );
-			facade.registerProxy( r );
-			_monitor.addResource( r );
+			var assets:XMLProxy = new XMLProxy();
+			facade.registerProxy(assets);			
+						
+			//Register all the startup Proxies			
+			var r2:StartupResourceProxy = new StartupResourceProxy( XMLProxy.SRNAME, assets );
+			facade.registerProxy( r2 );
+			_monitor.addResource( r2 );
 
+			r.requires = [r2];
 			
 			_monitor.loadResources();
 			

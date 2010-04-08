@@ -4,7 +4,6 @@
 
 package com.okbilly.model
 {
-	
 	import com.okbilly.ApplicationFacade;
 	
 	import org.puremvc.as3.multicore.interfaces.IProxy;
