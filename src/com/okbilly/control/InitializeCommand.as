@@ -41,13 +41,15 @@ package com.okbilly.control
 			//Register all the proxies			
 			var header:HeaderProxy = new HeaderProxy();
 			facade.registerProxy(header);			
-
+			var assets:XMLProxy = new XMLProxy();
+			facade.registerProxy(assets);
+			
 			
 			//Register all the startup Proxies			
 			var r:StartupResourceProxy = new StartupResourceProxy( HeaderProxy.SRNAME, header );
-			var assets:XMLProxy = new XMLProxy();
-			facade.registerProxy(assets);			
-						
+			facade.registerProxy( r );
+			_monitor.addResource( r );
+			
 			//Register all the startup Proxies			
 			var r2:StartupResourceProxy = new StartupResourceProxy( XMLProxy.SRNAME, assets );
 			facade.registerProxy( r2 );

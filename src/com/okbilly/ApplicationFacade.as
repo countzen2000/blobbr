@@ -42,6 +42,7 @@ package com.okbilly
 			registerCommand(INIT, InitializeCommand);
 			
 			//For startup Sequence--Startup Manager
+			registerCommand(XML_DATA_LOADED, StartupResourceLoadedCommand);
 			registerCommand(HEADER_DATA_LOADED, StartupResourceLoadedCommand);
 		}
 		
