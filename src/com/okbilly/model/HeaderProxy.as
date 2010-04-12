@@ -25,7 +25,9 @@ package com.okbilly.model
 		public function load():void
 		{
 			_xml = facade.retrieveProxy(XMLProxy.NAME) as XMLProxy;
-			user = _xml.currentBlob.poll.user;			
+			if (_xml.currentBlob != null) {
+				user = _xml.currentBlob.poll.user;
+			}
 			
 			this.sendLoadedNotification(ApplicationFacade.HEADER_DATA_LOADED, NAME, SRNAME);
 		}

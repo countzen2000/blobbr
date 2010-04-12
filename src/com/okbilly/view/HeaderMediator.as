@@ -36,7 +36,9 @@ package com.okbilly.view
 		{
 			switch (notification.getName()) {
 				case ApplicationFacade.STARTUP:
-					head.loadUp(_headProxy.user.avatar, _xmlProxy.currentBlob.poll.description);
+					if (_xmlProxy.currentBlob != null) {
+						head.loadUp(_headProxy.user.avatar, _xmlProxy.currentBlob.poll.description);
+					}
 					break;
 			}
 		}

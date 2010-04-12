@@ -15,6 +15,7 @@ package com.okbilly.view.component
 		
 		public function create(data:BlobbDTO):void
 		{
+			if (!data) return;
 			for each (var question:QuestionDTO in data.poll.questions) {
 				
 			}
