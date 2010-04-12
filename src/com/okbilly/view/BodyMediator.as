@@ -3,8 +3,10 @@ package com.okbilly.view
 	import com.okbilly.ApplicationFacade;
 	import com.okbilly.model.HeaderProxy;
 	import com.okbilly.model.XMLProxy;
+	import com.okbilly.view.component.BlobHolder;
 	
 	import org.puremvc.as3.multicore.interfaces.IMediator;
+	import org.puremvc.as3.multicore.interfaces.INotification;
 	import org.puremvc.as3.multicore.patterns.mediator.Mediator;
 	
 	public class BodyMediator extends Mediator implements IMediator
@@ -34,9 +36,14 @@ package com.okbilly.view
 		{
 			switch (notification.getName()) {
 				case ApplicationFacade.STARTUP:
-					
+					blobs.create(_xmlProxy.currentBlob);
 					break;
 			}
+		}
+		
+		public function get blobs():BlobHolder
+		{
+			return viewComponent as BlobHolder;
 		}
 	}
 }

@@ -24,7 +24,6 @@ package com.okbilly.model
 		public var blobbs:Array = []; 
 		public var currentBlob:BlobbDTO;
 		
-		
 		public function XMLProxy()
 		{
 			super(NAME, null);			

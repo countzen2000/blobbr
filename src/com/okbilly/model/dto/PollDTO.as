@@ -9,12 +9,8 @@ package com.okbilly.model.dto
 		public var sponsored:Boolean;
 		public var published:Date;
 		public var id:String;
-		public var question:String;
-		public var answermin:Number;
-		public var answermax:Number;
 		public var numblobbs:Number;
-		public var format:String;
-		public var type:String;
+		public var questions:Array = [];
 		
 		public function PollDTO(data:XML = null)
 		{
@@ -29,33 +25,39 @@ package com.okbilly.model.dto
 			sponsored = data.sponsored;
 			numblobbs = data.numblobbs;
 			id = data.id;
-			format = data.format;
-			question = data.question;
-			type = data.type;
-			answermin = data.answermin;
-			answermax = data.answermax;
+			
+			for each (var item:XML in data.questions.question) {
+				questions.push(new QuestionDTO(item));
+			}
 		}
 	}
 }
-/*
-<id>3</id>
-<title>Top 5 movies</title>
-<description>What are your top 5 favorite movies?</description>
-<featured>0</featured>
-<sponsored>0</sponsored>
-<published>2010-03-09T20:28:02-05:00</published>
-<numblobbs>1</numblobbs>
-<questions>
-<item>
-<id>5</id>
-<format>text</format>
-<question>Movies</question>
-<type>open</type>
-<answermin>5</answermin>
-<answermax>5</answermax>
-<choices/>
-</item>
-</questions>
-* 
 
+/*
+<poll>
+<id>2</id>
+<title>My mood</title>
+<description>How are you feeling? Blobb this as many times as you want!</description>
+<featured>1</featured>
+<sponsored>1</sponsored>
+<published>2010-03-11T01:37:40-05:00</published>
+<numblobbs>26</numblobbs>
+<questions>
+	<question key="0">
+	<id>4</id>
+	<format>text</format>
+	<question>What's your mood?</question>
+	<type>open</type>
+	<answermin>1</answermin>
+	<answermax>1</answermax>
+	<choices/>
+	</question>
+</questions>
+<user>
+<id>2</id>
+<username>elenor</username>
+<displayname>Elenor</displayname>
+<avatar>http://blobbr.com/files/avatar/1/3/6/a/0/2-thumb.jpg</avatar>
+</user>
+</poll>
 */
