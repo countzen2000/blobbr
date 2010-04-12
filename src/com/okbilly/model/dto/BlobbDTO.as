@@ -8,7 +8,7 @@ package com.okbilly.model.dto
 		public var created:Date;
 		public var poll:PollDTO;
 		public var userid:String;
-		public var answers:Array = [];
+		private var _answers:Array = [];
 		
 		public function BlobbDTO(data:XML = null)
 		{
@@ -21,11 +21,11 @@ package com.okbilly.model.dto
 			pollid = data.pollid;
 			
 			for each (var answer:XML in data.answers.answer) {
-				answers.push(new AnswerDTO(answer));
+				_answers.push(new AnswerDTO(answer));
 			}
 			
 			poll = new PollDTO(new XML(data.poll));
-			
+			poll.answers = _answers;
 			
 		}
 	}

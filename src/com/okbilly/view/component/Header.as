@@ -1,5 +1,6 @@
 package com.okbilly.view.component
 {
+	import flash.display.Bitmap;
 	import flash.display.GradientType;
 	import flash.display.Graphics;
 	import flash.display.InterpolationMethod;
@@ -18,7 +19,7 @@ package com.okbilly.view.component
 		private var _width:Number;
 		
 		private var _loadAvatar:Loader;
-		private var _question:EmbeddTextField;
+		private var _description:EmbeddTextField;
 		
 		public function Header(wide:Number)
 		{
@@ -47,21 +48,28 @@ package com.okbilly.view.component
 			_loadAvatar.contentLoaderInfo.addEventListener(Event.COMPLETE, onAvatarLoaded);
 			_loadAvatar.load(new URLRequest(avatarURL), new LoaderContext());
 			
-			_question = new EmbeddTextField(FontName.ARIAL, false, 10, 0xffffff);
-			_question.text = question;
-			_question.multiline = true;
-			_question.wordWrap = true;
+			_description = new EmbeddTextField(FontName.ARIAL, false, 10, 0xffffff);
+			_description.text = question;
+			_description.multiline = true;
+			_description.wordWrap = true;
 		}
 		
 		private function onAvatarLoaded(e:Event):void
 		{
 			_loadAvatar.contentLoaderInfo.removeEventListener(Event.COMPLETE, onAvatarLoaded);
+			(_loadAvatar.content as Bitmap).smoothing = true;
+			_loadAvatar.width = (45*(_loadAvatar.width/_loadAvatar.height));
+			_loadAvatar.height = 45;
+			
+			
 			_loadAvatar.x = _width - _loadAvatar.width;
 			
-			_question.width = _width - _loadAvatar.width - 20;
-			_question.x = 10;
-			_question.y = 10;
-			this.addChild(_question);
+			_description.width = _width - _loadAvatar.width - 20;
+			_description.x = 10;
+			_description.y = 10;
+			this.addChild(_description);
+			
+			//Resize Image
 			
 			this.addChild(_loadAvatar);
 		}

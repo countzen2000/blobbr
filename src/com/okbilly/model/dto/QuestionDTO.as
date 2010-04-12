@@ -8,12 +8,13 @@ package com.okbilly.model.dto
 		public var type:String;
 		public var answermin:Number;
 		public var answermax:Number;
-		
+		public var key:Number;
 		
 		public function QuestionDTO(data:XML = null)
 		{
 			if (!data) return;
 			
+			key = data.@key;
 			id = data.id;
 			format = data.format;
 			question = data.question;

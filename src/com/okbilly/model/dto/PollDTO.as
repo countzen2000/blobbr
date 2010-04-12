@@ -10,7 +10,10 @@ package com.okbilly.model.dto
 		public var published:Date;
 		public var id:String;
 		public var numblobbs:Number;
+		
 		public var questions:Array = [];
+		private var _answers:Array = [];
+		public var QASet:Array = [];
 		
 		public function PollDTO(data:XML = null)
 		{
@@ -29,6 +32,27 @@ package com.okbilly.model.dto
 			for each (var item:XML in data.questions.question) {
 				questions.push(new QuestionDTO(item));
 			}
+			
+			//We also set the answers from blobbDTO
+		}
+		
+		public function set answers(_array:Array):void
+		{
+			_answers = _array;
+			
+			for each (var question:QuestionDTO in questions) {
+				for each (var answer:AnswerDTO in _answers) {
+					if (question.id == answer.key) {
+						QASet[question.id] = new QASetDTO({"id":question.id, "question":question, "answer":answer});
+						break;
+					}
+				}
+			}
+		}
+		
+		public function MatchingQuestionsAndAnswers():void
+		{
+			
 		}
 	}
 }

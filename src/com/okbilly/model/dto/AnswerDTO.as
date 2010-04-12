@@ -2,7 +2,7 @@ package com.okbilly.model.dto
 {
 	public class AnswerDTO
 	{
-		public var key:String;
+		public var key:Number;
 		public var items:Array = [];
 		
 		public function AnswerDTO(data:XML = null)

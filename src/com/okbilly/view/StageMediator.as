@@ -2,6 +2,7 @@ package com.okbilly.view
 {
 	import com.okbilly.ApplicationFacade;
 	import com.okbilly.view.component.BlobHolder;
+	import com.okbilly.view.component.Footer;
 	import com.okbilly.view.component.Header;
 	
 	import flash.display.Stage;
@@ -54,12 +55,19 @@ package com.okbilly.view
 			facade.registerMediator(new HeaderMediator(header));
 			this.stage.addChild(header);
 			
-			var blobHold:BlobHolder = new BlobHolder();
+			var blobHold:BlobHolder = new BlobHolder(this.stage.stageWidth);
 			facade.registerMediator(new BodyMediator(blobHold));
 			blobHold.y = header.y + header.height;
 			this.stage.addChild(blobHold);
 			
 			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
+			
+			var footer:Footer = new Footer(this.stage.stageWidth);
+			facade.registerMediator(new FooterMediator(footer));
+			footer.y = blobHold.y + blobHold.height;
+			this.stage.addChild(footer);
+			
+			
 		}
 		
 		public function get stage():Stage
