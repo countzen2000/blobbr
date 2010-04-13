@@ -23,7 +23,7 @@ package com.okbilly.model
 		
 		public var blobbs:Array = []; 
 		private var _currentBlob:BlobbDTO;
-		private var _blobCount:int = 1;
+		private var _blobCount:int = 0;
 		
 		public function XMLProxy()
 		{
@@ -44,7 +44,7 @@ package com.okbilly.model
 		{
 			_loader = new URLLoader();
 			_loader.addEventListener(Event.COMPLETE, onLoaded, false, 0, true);
-			_loader.load(new URLRequest("http://blobbr.com/api/blobbs/include=poll,answers/filter/by=username/elenor.xml"));
+			_loader.load(new URLRequest(ApplicationFacade.XMLURL));
 		}
 		
 		public function changeCurrentBlob(direction:Number = 1):void

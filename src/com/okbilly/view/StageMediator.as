@@ -74,19 +74,22 @@ package com.okbilly.view
 				this.stage.removeChildAt(0);
 			}
 			
+			facade.removeMediator(HeaderMediator.NAME);
 			var header:Header = new Header(this.stage.stageWidth);
-			//facade.registerMediator(new HeaderMediator(header));
+			facade.registerMediator(new HeaderMediator(header));
 			this.stage.addChild(header);
 			
+			facade.removeMediator(BodyMediator.NAME);
 			var blobHold:BlobHolder = new BlobHolder(this.stage.stageWidth);
-			//facade.registerMediator(new BodyMediator(blobHold));
+			facade.registerMediator(new BodyMediator(blobHold));
 			blobHold.y = header.y + header.height;
 			this.stage.addChild(blobHold);
 			
 			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
 			
+			facade.removeMediator(FooterMediator.NAME);
 			var footer:Footer = new Footer(this.stage.stageWidth);
-			//facade.registerMediator(new FooterMediator(footer));
+			facade.registerMediator(new FooterMediator(footer));
 			footer.y = blobHold.y + blobHold.height;
 			this.stage.addChild(footer);
 		}

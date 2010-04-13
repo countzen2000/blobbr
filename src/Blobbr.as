@@ -8,14 +8,22 @@ package
 	
 	public class Blobbr extends Sprite
 	{
-		//[SWF(width="250", height="300")]
+		private var _xmlURL:String = "http://blobbr.com/api/blobbs/include=poll,answers/filter/by=username/elenor.xml";
+		
 		public function Blobbr()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			
+			var paramObj:Object = this.root.loaderInfo.parameters;
+			if (paramObj == null || paramObj.xmlURL == "" || paramObj.xmlURL == null) {
+				//do nithing
+			} else {
+				_xmlURL == paramObj.xmlURL;
+			}
+			
 			var facade:ApplicationFacade = ApplicationFacade.getInstance();
-			facade.init( this.stage );
+			facade.init( this.stage, _xmlURL );
 			
 		}
 	}

@@ -77,7 +77,7 @@ package com.okbilly.view.component
 			_loadAvatar.contentLoaderInfo.addEventListener(Event.COMPLETE, onAvatarLoaded);
 			_loadAvatar.load(new URLRequest(avatarURL), new LoaderContext());
 			
-			_description = new EmbeddTextField(FontName.ARIAL, false, 10, 0xffffff);
+			_description = new EmbeddTextField(FontName.ARIAL_BOLD, true, 10, 0xffffff);
 			_description.text = question;
 			_description.multiline = true;
 			_description.wordWrap = true;

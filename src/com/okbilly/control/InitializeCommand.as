@@ -42,6 +42,7 @@ package com.okbilly.control
 			var header:HeaderProxy = new HeaderProxy();
 			facade.registerProxy(header);			
 			var assets:XMLProxy = new XMLProxy();
+			
 			facade.registerProxy(assets);
 			
 			

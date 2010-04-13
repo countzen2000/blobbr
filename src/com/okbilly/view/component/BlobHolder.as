@@ -100,7 +100,7 @@ internal class Question extends Sprite
 		g.drawRect(0,0, _width, 23);
 		g.endFill();
 		
-		_title = new EmbeddTextField(FontName.ARIAL, true, 10);
+		_title = new EmbeddTextField(FontName.ARIAL_BOLD, true, 12);
 		_title.multiline = true;
 		_title.wordWrap = true;
 		_title.width = _width - 10;
@@ -137,7 +137,7 @@ internal class Answer extends Sprite
 		_answer.multiline = true;
 		_answer.wordWrap = true;
 		_answer.width = _width - 10;
-		_answer.text = string;
+		_answer.htmlText = string;
 		_answer.y = this.height/2 - _answer.textHeight/2 - 2;
 		_answer.x = 10;
 		this.addChild(_answer);

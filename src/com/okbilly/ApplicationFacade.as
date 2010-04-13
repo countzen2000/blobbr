@@ -21,6 +21,8 @@ package com.okbilly
 		public static const STARTUP:String = "startup";
 		public static const RELOAD_DATA:String = "reload";
 		
+		public static var XMLURL:String;
+		
 		public static var instance:ApplicationFacade;
 		
 		public function ApplicationFacade()
@@ -49,8 +51,10 @@ package com.okbilly
 			registerCommand(HEADER_DATA_LOADED, StartupResourceLoadedCommand);
 		}
 		
-		public function init( stage:Object ):void
+		public function init( stage:Object, xmlURL:String ):void
 		{
+			XMLURL  = xmlURL;
+			
 			sendNotification( INIT, stage );
 		}
 	}
