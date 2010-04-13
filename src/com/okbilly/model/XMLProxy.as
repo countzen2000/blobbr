@@ -60,8 +60,9 @@ package com.okbilly.model
 					_blobCount = blobbs.length -1;
 				}
 			}
-			_currentBlob = blobbs[_currentBlob];
+			_currentBlob = blobbs[_blobCount];
 			
+			this.sendNotification(ApplicationFacade.RELOAD_DATA);
 			
 		}
 		

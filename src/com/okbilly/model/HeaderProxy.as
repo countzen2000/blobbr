@@ -31,5 +31,12 @@ package com.okbilly.model
 			
 			this.sendLoadedNotification(ApplicationFacade.HEADER_DATA_LOADED, NAME, SRNAME);
 		}
+		
+		public function reloadUser():void
+		{
+			if (_xml.currentBlob != null) {
+				user = _xml.currentBlob.poll.user;
+			}
+		}
 	}
 }

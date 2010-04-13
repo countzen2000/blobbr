@@ -1,6 +1,7 @@
 package com.okbilly
 {
 	import com.okbilly.control.InitializeCommand;
+	import com.okbilly.control.ReloadCommand;
 	
 	import org.puremvc.as3.multicore.interfaces.IFacade;
 	import org.puremvc.as3.multicore.patterns.facade.Facade;
@@ -18,6 +19,7 @@ package com.okbilly
 		public static const HEADER_DATA_LOADED:String = "headerDataLoaded";
 		public static const XML_DATA_LOADED:String = "xmlDataLoaded";
 		public static const STARTUP:String = "startup";
+		public static const RELOAD_DATA:String = "reload";
 		
 		public static var instance:ApplicationFacade;
 		
@@ -40,6 +42,7 @@ package com.okbilly
 		{
 			super.initializeController();
 			registerCommand(INIT, InitializeCommand);
+			registerCommand(RELOAD_DATA, ReloadCommand);
 			
 			//For startup Sequence--Startup Manager
 			registerCommand(XML_DATA_LOADED, StartupResourceLoadedCommand);

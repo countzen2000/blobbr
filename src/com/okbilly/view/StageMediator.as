@@ -66,8 +66,29 @@ package com.okbilly.view
 			facade.registerMediator(new FooterMediator(footer));
 			footer.y = blobHold.y + blobHold.height;
 			this.stage.addChild(footer);
+		}
+		
+		public function redoSite():void
+		{
+			while (this.stage.numChildren > 0) {
+				this.stage.removeChildAt(0);
+			}
 			
+			var header:Header = new Header(this.stage.stageWidth);
+			//facade.registerMediator(new HeaderMediator(header));
+			this.stage.addChild(header);
 			
+			var blobHold:BlobHolder = new BlobHolder(this.stage.stageWidth);
+			//facade.registerMediator(new BodyMediator(blobHold));
+			blobHold.y = header.y + header.height;
+			this.stage.addChild(blobHold);
+			
+			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
+			
+			var footer:Footer = new Footer(this.stage.stageWidth);
+			//facade.registerMediator(new FooterMediator(footer));
+			footer.y = blobHold.y + blobHold.height;
+			this.stage.addChild(footer);
 		}
 		
 		public function get stage():Stage
