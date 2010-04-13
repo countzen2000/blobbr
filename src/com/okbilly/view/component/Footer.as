@@ -31,7 +31,7 @@ package com.okbilly.view.component
 			this.addChild(_logo);
 			
 			_ago = new EmbeddTextField(FontName.ARIAL, false, 10, 0xb9b9b9);
-			_ago.text = "posetd by Elenor 14hrs ago.";
+			_ago.text = "posted by Elenor 14hrs ago";
 			_ago.x = 6;
 			_ago.y = 23/2 - _ago.textHeight/2 -2
 			this.addChild(_ago);

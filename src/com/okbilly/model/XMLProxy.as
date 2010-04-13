@@ -23,6 +23,7 @@ package com.okbilly.model
 		
 		public var blobbs:Array = []; 
 		private var _currentBlob:BlobbDTO;
+		private var _blobCount:int = 1;
 		
 		public function XMLProxy()
 		{
@@ -46,6 +47,24 @@ package com.okbilly.model
 			_loader.load(new URLRequest("http://blobbr.com/api/blobbs/include=poll,answers/filter/by=username/elenor.xml"));
 		}
 		
+		public function changeCurrentBlob(direction:Number = 1):void
+		{
+			if (direction > 0) {
+				_blobCount++;
+				if (_blobCount >= blobbs.length) {
+					_blobCount = 0;
+				}
+			} else {
+				_blobCount--;
+				if (_blobCount < 0) {
+					_blobCount = blobbs.length -1;
+				}
+			}
+			_currentBlob = blobbs[_currentBlob];
+			
+			
+		}
+		
 		private function onLoaded(e:Event):void
 		{
 			_xml = new XML(_loader.data);
@@ -54,7 +73,7 @@ package com.okbilly.model
 				blobbs.push(new BlobbDTO(blobb));
 			}
 			
-			_currentBlob = blobbs[0];
+			_currentBlob = blobbs[_blobCount];
 			
 			this.sendLoadedNotification(ApplicationFacade.XML_DATA_LOADED, NAME, SRNAME);
 		}
