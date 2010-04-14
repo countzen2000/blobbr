@@ -96,9 +96,12 @@ internal class Question extends Sprite
 		_width = stageWidth;
 		
 		var g:Graphics = this.graphics;
-		g.beginFill(0x68a100);
+		g.beginFill(Blobbr.color);
 		g.drawRect(0,0, _width, 23);
 		g.endFill();
+		g.moveTo(0, 23);
+		g.lineStyle(1, 0xFFFFFF);
+		g.lineTo(_width, 23);
 		
 		_title = new EmbeddTextField(FontName.ARIAL_BOLD, true, 12);
 		_title.multiline = true;

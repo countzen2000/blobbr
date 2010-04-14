@@ -24,18 +24,25 @@ package com.okbilly.view.component
 			g.beginFill(0x1e1e1e);
 			g.drawRect(0,0, _width, 23);
 			g.endFill();
+			g.moveTo(0, 0);
+			g.lineStyle(1, 0xFFFFFF);
+			g.lineTo(_width, 0);
 			
 			_logo = new LOGO() as Bitmap;
 			_logo.x = _width - _logo.width - 8;
 			_logo.y = 23/2 - _logo.height/2;
 			this.addChild(_logo);
 			
+			
+		}
+		
+		public function draw(ago:String, name:String):void
+		{
 			_ago = new EmbeddTextField(FontName.ARIAL, false, 10, 0xb9b9b9);
-			_ago.text = "posted by Elenor 14hrs ago";
+			_ago.text = "blobbed by "+name+" "+ago;
 			_ago.x = 6;
 			_ago.y = 23/2 - _ago.textHeight/2 -2
 			this.addChild(_ago);
-			
 		}
 	}
 }
