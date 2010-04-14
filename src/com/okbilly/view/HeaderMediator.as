@@ -56,13 +56,11 @@ package com.okbilly.view
 		}
 		private function onNext(e:Event):void
 		{
-			trace ('next');
 			_xmlProxy.changeCurrentBlob(1);
 		}
 		
 		private function onPrevious(e:Event):void
 		{
-			trace ('previous');
 			_xmlProxy.changeCurrentBlob(-1);
 		}
 			

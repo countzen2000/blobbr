@@ -60,16 +60,21 @@ package com.okbilly.view
 			blobHold.y = header.y + header.height;
 			this.stage.addChild(blobHold);
 			
-			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
+			
 			
 			var footer:Footer = new Footer(this.stage.stageWidth);
 			facade.registerMediator(new FooterMediator(footer));
+			
+			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
+			
 			footer.y = blobHold.y + blobHold.height;
 			this.stage.addChild(footer);
 		}
 		
 		public function redoSite():void
 		{
+			
+			//Fade Out
 			while (this.stage.numChildren > 0) {
 				this.stage.removeChildAt(0);
 			}
@@ -85,11 +90,14 @@ package com.okbilly.view
 			blobHold.y = header.y + header.height;
 			this.stage.addChild(blobHold);
 			
-			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
+			
 			
 			facade.removeMediator(FooterMediator.NAME);
 			var footer:Footer = new Footer(this.stage.stageWidth);
 			facade.registerMediator(new FooterMediator(footer));
+			
+			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
+			
 			footer.y = blobHold.y + blobHold.height;
 			this.stage.addChild(footer);
 		}

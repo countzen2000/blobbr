@@ -6,9 +6,30 @@ package com.okbilly.model.dto
 		
 		public var pollid:Number;
 		public var created:Date;
+		public var createAgo:String;
 		public var poll:PollDTO;
 		public var userid:String;
 		private var _answers:Array = [];
+		
+		
+		/* The number of milliseconds in one day
+		*/     
+		public static const MILLISECONDS_IN_DAY : Number = 86400000;
+		
+		/**
+		 * The number of milliseconds in one hour
+		 */     
+		public static const MILLISECONDS_IN_HOUR : Number = 3600000;
+		
+		/**
+		 * The number of milliseconds in one minute
+		 */     
+		public static const MILLISECONDS_IN_MINUTE : Number = 60000;
+		
+		/**
+		 * The number of milliseconds in one second
+		 */     
+		public static const MILLISECONDS_IN_SECOND : Number = 1000;
 		
 		public function BlobbDTO(data:XML = null)
 		{
@@ -19,6 +40,29 @@ package com.okbilly.model.dto
 			id = data.id;
 			userid = data.userid;
 			pollid = data.pollid;
+			created = new Date();
+			var temp:String = data.created;
+			//2010-04-12T01:59:49-04:00
+			
+			created.setFullYear(temp.substr(0, 4).toString(), Number(temp.substr(5,2))-1, temp.substr(8, 2).toString()); 
+			created.setHours(temp.substr(11, 2).toString(), temp.substr(14, 2).toString(), temp.substr(17,2).toString());
+			
+			var current:Date = new Date();
+			if ((current.getMonth() - created.getMonth()) > 0) {
+				createAgo = "a long while ago";
+			} else if ((current.getDate() - created.getDate()) > 0) {
+				if ((current.getDate() - created.getDate()) > 1) {
+					createAgo = (current.getDate() - created.getDate()) + " days ago";
+				} else {
+					createAgo = "1 day ago";
+				}
+			} else if ((current.getHours() - created.getHours()) > 0) {
+				createAgo = (current.getHours() - created.getHours()) + " hours ago";
+			} else if ((current.getMinutes() - created.getMinutes()) > 0) {
+				createAgo = (current.getMinutes() - created.getMinutes()) + " mins ago";
+			} else {
+				createAgo = "just now";
+			}
 			
 			for each (var answer:XML in data.answers.answer) {
 				_answers.push(new AnswerDTO(answer));

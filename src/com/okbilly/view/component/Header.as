@@ -67,20 +67,37 @@ package com.okbilly.view.component
 			gradient.createGradientBox(_width, 45, Math.PI/2);			
 			g.beginGradientFill(GradientType.LINEAR, [0x2a2a2a, 0x0c0c0c], [1,1], [0, 255], gradient, SpreadMethod.PAD, InterpolationMethod.RGB,0);
 			g.drawRect(0,0, _width, 45);
+			g.endFill();
+			g.moveTo(0, 45);
+			g.lineStyle(1, 0xFFFFFF);
+			g.lineTo(_width, 45);
 			
 			this.addChild(_box);
 		}
 		
 		public function loadUp(avatarURL:String, question:String):void
 		{
-			_loadAvatar = new Loader();
-			_loadAvatar.contentLoaderInfo.addEventListener(Event.COMPLETE, onAvatarLoaded);
-			_loadAvatar.load(new URLRequest(avatarURL), new LoaderContext());
-			
 			_description = new EmbeddTextField(FontName.ARIAL_BOLD, true, 10, 0xffffff);
 			_description.text = question;
 			_description.multiline = true;
 			_description.wordWrap = true;
+			
+			if (Blobbr.avatar >= 1) {
+				_loadAvatar = new Loader();
+				_loadAvatar.contentLoaderInfo.addEventListener(Event.COMPLETE, onAvatarLoaded);
+				_loadAvatar.load(new URLRequest(avatarURL), new LoaderContext());
+			} else {
+				_description.width = _width - 20;
+				_description.x = 10;
+				_description.y = 10;
+				this.addChild(_description);
+				
+				this.addChild(_left);
+				this.addChild(_right);
+				_right.x = _left.x + _left.width;
+			}
+			
+			
 		}
 		
 		private function onAvatarLoaded(e:Event):void
