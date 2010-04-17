@@ -34,6 +34,8 @@ package com.okbilly.view.component
 		private var _left:Sprite;
 		private var _right:Sprite;
 		
+		public static const HEIGHT:Number = 45;
+		
 		public function Header(wide:Number)
 		{
 			super();

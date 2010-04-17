@@ -1,22 +1,34 @@
 package com.okbilly.view.component
 {
+	import com.greensock.TweenLite;
 	import com.okbilly.model.dto.BlobbDTO;
 	import com.okbilly.model.dto.PollDTO;
 	import com.okbilly.model.dto.QASetDTO;
 	import com.okbilly.model.dto.QuestionDTO;
 	
 	import flash.display.DisplayObject;
+	import flash.display.Shape;
 	import flash.display.Sprite;
+	import flash.events.DataEvent;
 
 	public class BlobHolder extends Sprite
 	{
 		private var _width:Number;
+		private var _height:Number;
 		
-		public function BlobHolder(stageWidth:Number)
+		private var _mask:Shape;
+		private var _blobHolder:Sprite;
+		
+		public function BlobHolder(stageWidth:Number, stageHeight:Number)
 		{
 			super();
 			
 			_width = stageWidth;
+			_height = stageHeight;
+			
+			_blobHolder = new Sprite();
+			this.addChild(_blobHolder);
+
 		}
 		
 		public function create(data:BlobbDTO):void
@@ -34,12 +46,39 @@ package com.okbilly.view.component
 					blob.y = temporary.y + temporary.height;					
 				}
 				
-				this.addChild(blob);
+				_blobHolder.addChild(blob);
 				
 				temporary = blob;
 				counter++;
 			}
+			
+			if (_blobHolder.height > _height) {
+				//we need a scrollbar.
+				_mask = new Shape();
+				_mask.graphics.beginFill(0x000000, 1);
+				_mask.graphics.drawRect(0, 0, _width, _height);
+				_mask.graphics.endFill();
+				this.addChild(_mask);
+				
+				_blobHolder.mask = _mask;
+				
+				var temp:Scrollbar = new Scrollbar(_mask.height);
+				temp.x = _mask.x + _mask.width - temp.width;
+				this.addChild(temp);
+				temp.addEventListener(Scrollbar.SCROLLING, onScroll);
+			}
 		}
+		
+		private function onScroll(e:DataEvent):void
+		{
+			var MAX:Number = _blobHolder.height - _height;
+			
+			TweenLite.to(_blobHolder, .4, {y:-(Number(e.data)/100 * MAX)});
+		}
+		
+		override public function get height():Number{
+			return Math.min(_height, _blobHolder.height);
+		} 
 	}
 }
 import com.okbilly.model.dto.AnswerDTO;

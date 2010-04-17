@@ -10,7 +10,7 @@ package
 	{
 		private var _xmlURL:String = "http://blobbr.com/api/blobbs/include=poll,answers/filter/by=username/elenor.xml";
 		public static var color:Number = 0x68a100;
-		public static var avatar:Number = 0;
+		public static var avatar:Number = 1;
 		
 		public function Blobbr()
 		{

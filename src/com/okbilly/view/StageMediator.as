@@ -55,20 +55,18 @@ package com.okbilly.view
 			facade.registerMediator(new HeaderMediator(header));
 			this.stage.addChild(header);
 			
-			var blobHold:BlobHolder = new BlobHolder(this.stage.stageWidth);
+			var blobHold:BlobHolder = new BlobHolder(this.stage.stageWidth, this.stage.stageHeight - (Footer.HEIGHT + Header.HEIGHT));
 			facade.registerMediator(new BodyMediator(blobHold));
 			blobHold.y = header.y + header.height;
 			this.stage.addChild(blobHold);
-			
-			
-			
+
 			var footer:Footer = new Footer(this.stage.stageWidth);
 			facade.registerMediator(new FooterMediator(footer));
+			this.stage.addChild(footer);
 			
 			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
-			
 			footer.y = blobHold.y + blobHold.height;
-			this.stage.addChild(footer);
+			
 		}
 		
 		public function redoSite():void
@@ -85,21 +83,21 @@ package com.okbilly.view
 			this.stage.addChild(header);
 			
 			facade.removeMediator(BodyMediator.NAME);
-			var blobHold:BlobHolder = new BlobHolder(this.stage.stageWidth);
+			var blobHold:BlobHolder = new BlobHolder(this.stage.stageWidth, this.stage.stageHeight -  (Footer.HEIGHT + Header.HEIGHT));
 			facade.registerMediator(new BodyMediator(blobHold));
 			blobHold.y = header.y + header.height;
 			this.stage.addChild(blobHold);
-			
-			
-			
+
 			facade.removeMediator(FooterMediator.NAME);
 			var footer:Footer = new Footer(this.stage.stageWidth);
 			facade.registerMediator(new FooterMediator(footer));
+			this.stage.addChild(footer);
+
 			
 			ApplicationFacade.instance.sendNotification(ApplicationFacade.STARTUP);
 			
 			footer.y = blobHold.y + blobHold.height;
-			this.stage.addChild(footer);
+			
 		}
 		
 		public function get stage():Stage

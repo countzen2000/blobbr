@@ -14,6 +14,8 @@ package com.okbilly.view.component
 		private var _logo:Bitmap;
 		private var _ago:EmbeddTextField;
 		
+		public static const HEIGHT:Number = 23;
+		
 		public function Footer(stageWidth:Number)
 		{
 			super();
@@ -22,7 +24,7 @@ package com.okbilly.view.component
 			
 			var g:Graphics = this.graphics;
 			g.beginFill(0x1e1e1e);
-			g.drawRect(0,0, _width, 23);
+			g.drawRect(0,0, _width, HEIGHT);
 			g.endFill();
 			g.moveTo(0, 0);
 			g.lineStyle(1, 0xFFFFFF);
@@ -30,7 +32,7 @@ package com.okbilly.view.component
 			
 			_logo = new LOGO() as Bitmap;
 			_logo.x = _width - _logo.width - 8;
-			_logo.y = 23/2 - _logo.height/2;
+			_logo.y = HEIGHT/2 - _logo.height/2;
 			this.addChild(_logo);
 			
 			
@@ -41,7 +43,7 @@ package com.okbilly.view.component
 			_ago = new EmbeddTextField(FontName.ARIAL, false, 10, 0xb9b9b9);
 			_ago.text = "blobbed by "+name+" "+ago;
 			_ago.x = 6;
-			_ago.y = 23/2 - _ago.textHeight/2 -2
+			_ago.y = HEIGHT/2 - _ago.textHeight/2 -2
 			this.addChild(_ago);
 		}
 	}
