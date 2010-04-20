@@ -34,6 +34,8 @@ package com.okbilly.view.component
 		private var _left:Sprite;
 		private var _right:Sprite;
 		
+		private var _descriptionText:String;
+		
 		public static const HEIGHT:Number = 45;
 		
 		public function Header(wide:Number)
@@ -79,19 +81,19 @@ package com.okbilly.view.component
 		
 		public function loadUp(avatarURL:String, question:String):void
 		{
-			_description = new EmbeddTextField(FontName.ARIAL_BOLD, true, 10, 0xffffff);
-			_description.text = question;
-			_description.multiline = true;
-			_description.wordWrap = true;
+			
+			_descriptionText = question;
 			
 			if (Blobbr.avatar >= 1) {
 				_loadAvatar = new Loader();
 				_loadAvatar.contentLoaderInfo.addEventListener(Event.COMPLETE, onAvatarLoaded);
 				_loadAvatar.load(new URLRequest(avatarURL), new LoaderContext());
 			} else {
-				_description.width = _width - 20;
+				_description = new EmbeddTextField(FontName.ARIAL_BOLD, true, dynamicFontSize(question, _width-40, 35), 0xffffff);
+				_description.text = _descriptionText;
+				//_description.width = _width - 20;
 				_description.x = 10;
-				_description.y = 10;
+				_description.y = HEIGHT/2 - _description.textHeight/2;
 				this.addChild(_description);
 				
 				this.addChild(_left);
@@ -112,9 +114,12 @@ package com.okbilly.view.component
 			
 			_loadAvatar.x = _width - _loadAvatar.width;
 			
-			_description.width = _width - _loadAvatar.width - 20;
+			
+			_description = new EmbeddTextField(FontName.ARIAL_BOLD, true, dynamicFontSize(_descriptionText,_width - _loadAvatar.width - 40, 35), 0xffffff);
+			_description.text = _descriptionText;
+			//_description.width = _width - _loadAvatar.width - 20;
 			_description.x = 10;
-			_description.y = 10;
+			_description.y = HEIGHT/2 - _description.textHeight/2;
 			this.addChild(_description);
 			
 			this.addChild(_loadAvatar);
@@ -142,6 +147,30 @@ package com.okbilly.view.component
 		private function onOut(e:Event):void
 		{
 			TweenLite.to(e.currentTarget, .5, {alpha:0});
+		}
+		
+		private function dynamicFontSize(text:String, maxWidth:Number, maxHeight:Number):Number
+		{
+			var fontSize:Number = 10;
+			
+			var temp:EmbeddTextField = new EmbeddTextField(FontName.ARIAL_BOLD, true, fontSize, 0xffffff);
+			temp.text = text;
+			
+			if (temp.width > maxWidth || temp.height > maxHeight) {
+				while (temp.textWidth > maxWidth && temp.textHeight > maxHeight) {
+					trace ("smaller: "+fontSize);
+					temp = new EmbeddTextField(FontName.ARIAL_BOLD, true, fontSize--, 0xffffff);
+					temp.text = text;
+				} 
+			} else {
+				while (temp.textWidth < maxWidth && temp.textHeight < maxHeight) {
+					trace ("larger: "+fontSize);
+					temp = new EmbeddTextField(FontName.ARIAL_BOLD, true, fontSize++, 0xffffff);
+					temp.text = text;
+				} 
+			}
+			trace (fontSize);
+			return fontSize;
 		}
 	}
 }
