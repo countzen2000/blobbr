@@ -26,6 +26,8 @@ package com.okbilly.view.component
 			_height = targetHeight;
 			
 			_upArrow = new Arrow(1);
+			_upArrow.useHandCursor = _upArrow.buttonMode = true;
+			_upArrow.addEventListener(MouseEvent.CLICK, onArrowClick);
 			this.addChild(_upArrow);
 			
 			_background = new Sprite();
@@ -36,6 +38,8 @@ package com.okbilly.view.component
 			this.addChild(_background);
 			
 			_downArrow = new Arrow(-1);
+			_downArrow.useHandCursor = _downArrow.buttonMode = true;
+			_downArrow.addEventListener(MouseEvent.CLICK, onArrowClick);
 			_downArrow.y = _background.y + _background.height;
 			this.addChild(_downArrow);
 			
@@ -58,6 +62,22 @@ package com.okbilly.view.component
 			_thumb.stage.addEventListener(MouseEvent.MOUSE_UP, onUp);
 		}
 		
+		private function onArrowClick(e:Event):void
+		{
+			if (e.currentTarget == _upArrow) {
+				_thumb.y -= 5;
+				if (_thumb.y < _background.y) {
+					_thumb.y = _background.y;
+				}
+			} else {
+				_thumb.y += 5;
+				if (_thumb.y + _thumb.height > _background.y+_background.height) {
+					_thumb.y = _background.y + _background.height - _thumb.height;
+				}
+			}
+			onDrag();
+		}
+		
 		private function onDown(e:Event):void
 		{
 			_thumb.startDrag(false, new Rectangle(_background.x, _background.y, 0, _background.height - _thumb.height));
@@ -74,12 +94,12 @@ package com.okbilly.view.component
 			}
 		}
 		
-		private function onDrag(e:Event):void
+		private function onDrag(e:Event = null):void
 		{
-			var scroll:Number = ((_thumb.y) / (_background.height - _thumb.height));
-			scroll *= 100;
-			scroll = Math.round(scroll);
-			scroll -= 8;
+			var scroll:Number = ((_thumb.y -  _background.y) / ( _background.height - _thumb.height));
+			//scroll *= 100;
+			//scroll = Math.round(scroll);
+			//scroll -= _thumb.height;
 			this.dispatchEvent(new DataEvent(SCROLLING, true, false, scroll.toString() ));	
 		}
 		

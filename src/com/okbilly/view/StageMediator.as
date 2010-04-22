@@ -54,6 +54,8 @@ package com.okbilly.view
 			var header:Header = new Header(this.stage.stageWidth);
 			facade.registerMediator(new HeaderMediator(header));
 			this.stage.addChild(header);
+
+			trace (this.stage.stageHeight);
 			
 			var blobHold:BlobHolder = new BlobHolder(this.stage.stageWidth, this.stage.stageHeight - (Footer.HEIGHT + Header.HEIGHT));
 			facade.registerMediator(new BodyMediator(blobHold));
@@ -71,7 +73,6 @@ package com.okbilly.view
 		
 		public function redoSite():void
 		{
-			
 			//Fade Out
 			while (this.stage.numChildren > 0) {
 				this.stage.removeChildAt(0);

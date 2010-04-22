@@ -20,7 +20,7 @@ package com.okbilly.view.component
 			super();	
 			
 			_format = new TextFormat(fontName, size, color, bold);
-			
+			this.selectable = false;
 			this.autoSize = TextFieldAutoSize.LEFT;
 			this.embedFonts = true;
 			this.defaultTextFormat = _format;

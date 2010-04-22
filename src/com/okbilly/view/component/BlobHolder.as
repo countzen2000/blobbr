@@ -73,7 +73,7 @@ package com.okbilly.view.component
 		{
 			var MAX:Number = _blobHolder.height - _height;
 			
-			TweenLite.to(_blobHolder, .4, {y:-(Number(e.data)/100 * MAX)});
+			TweenLite.to(_blobHolder, .4, {y:-(Number(e.data) * MAX)});
 		}
 		
 		override public function get height():Number{

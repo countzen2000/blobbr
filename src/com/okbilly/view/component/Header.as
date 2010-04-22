@@ -151,7 +151,7 @@ package com.okbilly.view.component
 		
 		private function dynamicFontSize(text:String, maxWidth:Number, maxHeight:Number):Number
 		{
-			var fontSize:Number = 10;
+			var fontSize:Number = 1;
 			
 			var temp:EmbeddTextField = new EmbeddTextField(FontName.ARIAL_BOLD, true, fontSize, 0xffffff);
 			temp.text = text;
@@ -169,7 +169,9 @@ package com.okbilly.view.component
 					temp.text = text;
 				} 
 			}
-			trace (fontSize);
+			if (fontSize > 20) {
+				fontSize = 20;
+			}
 			return fontSize;
 		}
 	}
