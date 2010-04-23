@@ -151,20 +151,20 @@ package com.okbilly.view.component
 		
 		private function dynamicFontSize(text:String, maxWidth:Number, maxHeight:Number):Number
 		{
-			var fontSize:Number = 1;
+			var fontSize:Number = 9;
 			
 			var temp:EmbeddTextField = new EmbeddTextField(FontName.ARIAL_BOLD, true, fontSize, 0xffffff);
 			temp.text = text;
 			
 			if (temp.width > maxWidth || temp.height > maxHeight) {
 				while (temp.textWidth > maxWidth && temp.textHeight > maxHeight) {
-					trace ("smaller: "+fontSize);
+					//trace ("smaller: "+fontSize);
 					temp = new EmbeddTextField(FontName.ARIAL_BOLD, true, fontSize--, 0xffffff);
 					temp.text = text;
 				} 
 			} else {
 				while (temp.textWidth < maxWidth && temp.textHeight < maxHeight) {
-					trace ("larger: "+fontSize);
+					//trace ("larger: "+fontSize);
 					temp = new EmbeddTextField(FontName.ARIAL_BOLD, true, fontSize++, 0xffffff);
 					temp.text = text;
 				} 

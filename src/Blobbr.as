@@ -11,6 +11,7 @@ package
 		private var _xmlURL:String = "http://blobbr.com/api/blobbs/include=poll,answers/filter/by=combo/username=elenor/poll=6/username,poll.xml";
 		public static var color:Number = 0x68a100;
 		public static var avatar:Number = 1;
+		public static var CLICK_URL:String = "http://blobbr.com/";
 		
 		public function Blobbr()
 		{
@@ -20,15 +21,19 @@ package
 			
 			var paramObj:Object = this.root.loaderInfo.parameters;
 			if (paramObj.xmlURL ) {
-				_xmlURL == paramObj.xmlURL;
+				_xmlURL = paramObj.xmlURL;
 			}
 			
 			if (paramObj.questionColor) {
-				color == paramObj.questionColor;
+				color = paramObj.questionColor;
 			}
 			
 			if (paramObj.avatar) {
-				avatar == paramObj.avatar;
+				avatar = paramObj.avatar;
+			}
+			
+			if (paramObj.clickURL) {
+				CLICK_URL = paramObj.clickURL;
 			}
 			
 			var facade:ApplicationFacade = ApplicationFacade.getInstance();

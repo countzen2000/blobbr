@@ -9,6 +9,7 @@ package com.okbilly.model.dto
 		public var createAgo:String;
 		public var poll:PollDTO;
 		public var userid:String;
+		public var user:UserDTO;
 		private var _answers:Array = [];
 		
 		
@@ -37,6 +38,8 @@ package com.okbilly.model.dto
 			
 			if (!data) return;
 			
+			
+			user = new UserDTO(new XML(data.user));
 			id = data.id;
 			userid = data.userid;
 			pollid = data.pollid;

@@ -26,7 +26,7 @@ package com.okbilly.model
 		{
 			_xml = facade.retrieveProxy(XMLProxy.NAME) as XMLProxy;
 			if (_xml.currentBlob != null) {
-				user = _xml.currentBlob.poll.user;
+				user = _xml.currentBlob.user;
 			}
 			
 			this.sendLoadedNotification(ApplicationFacade.HEADER_DATA_LOADED, NAME, SRNAME);
@@ -35,7 +35,7 @@ package com.okbilly.model
 		public function reloadUser():void
 		{
 			if (_xml.currentBlob != null) {
-				user = _xml.currentBlob.poll.user;
+				user = _xml.currentBlob.user;
 			}
 		}
 	}

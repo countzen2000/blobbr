@@ -33,7 +33,7 @@ package com.okbilly.view
 		{
 			switch (notification.getName()) {
 				case ApplicationFacade.STARTUP:
-					footer.draw(_xml.currentBlob.createAgo, _xml.currentBlob.poll.user.displayName);
+					footer.draw(_xml.currentBlob.createAgo, _xml.currentBlob.user.displayName);
 					break;
 			}
 		}

@@ -4,6 +4,10 @@ package com.okbilly.view.component
 	import flash.display.DisplayObject;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	public class Footer extends Sprite
 	{
@@ -11,7 +15,7 @@ package com.okbilly.view.component
 		public var LOGO:Class; //LOGO
 		
 		private var _width:Number;
-		private var _logo:Bitmap;
+		private var _logo:Sprite;
 		private var _ago:EmbeddTextField;
 		
 		public static const HEIGHT:Number = 23;
@@ -29,8 +33,11 @@ package com.okbilly.view.component
 			g.moveTo(0, 0);
 			g.lineStyle(1, 0xFFFFFF);
 			g.lineTo(_width, 0);
-			
-			_logo = new LOGO() as Bitmap;
+		
+			_logo = new Sprite();
+			_logo.addChild(new LOGO() as Bitmap);
+			_logo.useHandCursor = _logo.buttonMode = true;
+			_logo.addEventListener(MouseEvent.CLICK, onClick, false, 0, true);
 			_logo.x = _width - _logo.width - 8;
 			_logo.y = HEIGHT/2 - _logo.height/2;
 			this.addChild(_logo);
@@ -45,6 +52,11 @@ package com.okbilly.view.component
 			_ago.x = 6;
 			_ago.y = HEIGHT/2 - _ago.textHeight/2 -2
 			this.addChild(_ago);
+		}
+		
+		private function onClick(e:Event):void
+		{
+			navigateToURL(new URLRequest(Blobbr.CLICK_URL), "_blank");
 		}
 	}
 }

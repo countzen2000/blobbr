@@ -2,7 +2,7 @@ package com.okbilly.model.dto
 {
 	public class PollDTO extends Object
 	{
-		public var user:UserDTO;
+		//public var user:UserDTO;
 		public var title:String;
 		public var description:String;
 		public var featured:Boolean;
@@ -21,7 +21,7 @@ package com.okbilly.model.dto
 			
 			if (!data) return;
 			
-			user = new UserDTO(new XML(data.user));
+			//user = new UserDTO(new XML(data.user));
 			title = data.title;
 			description = data.description;
 			featured = data.featured;
